@@ -13,7 +13,7 @@ def generate_des_key():
 
     """
 
-    return True
+    return secrets.token_bytes(8)
 
 
 def generate_3des_key(key_option: int = 2):
@@ -43,3 +43,8 @@ def generate_iv(block_size: int = 8) -> bytes:
     """
     # TODO: Implementar
     pass
+
+if __name__ == "__main__":
+    
+    des_key = generate_des_key()
+    print(f"DES key (8 bytes):          {des_key.hex()}  [{len(des_key)} bytes]")
