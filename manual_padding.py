@@ -20,10 +20,11 @@ def pkcs7_pad(data: bytes, block_size: int = 8):
         >>> pkcs7_pad(b"12345678", 8).hex()  # Exactamente 8 bytes
         '31323334353637380808080808080808'  # + bloque completo
     """
-    
-
-
-    return True
+    # Primero es ver cuantos bytes me faltan para completar el bloque
+    padding_length = block_size - (len(data) % block_size)
+    # Ahora que ya tenemos el largo del padding, ahora creamos el padding
+    padding = bytes([padding_length] * padding_length)
+    return data + padding
 
 
 def pkcs7_unpad(data: bytes) -> bytes:
@@ -37,3 +38,10 @@ def pkcs7_unpad(data: bytes) -> bytes:
     """
 
     return True
+
+if __name__ == "__main__":
+    test1 = pkcs7_pad(b"HOLA", 8)
+    print(f"pkcs7_pad(b'HOLA', 8):  {test1.hex()}")
+
+    test2 = pkcs7_pad(b"12345678", 8)
+    print(f"pkcs7_pad(b'12345678', 8): {test2.hex()}")
