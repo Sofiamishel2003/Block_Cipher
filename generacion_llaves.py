@@ -35,9 +35,10 @@ def generate_aes_key(key_size: int = 256):
     
    
     """
-    # TODO: Implementar
     # Convertir bits a bytes: key_size // 8
-    pass
+    if key_size not in (128, 192, 256):
+        raise ValueError("Tamaño de clave AES inválido. Use 128, 192 o 256 bits.")
+    return secrets.token_bytes(key_size // 8)
 
 
 def generate_iv(block_size: int = 8) -> bytes:
