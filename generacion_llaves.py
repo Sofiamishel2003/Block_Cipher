@@ -21,9 +21,13 @@ def generate_3des_key(key_option: int = 2):
     Genera una clave 3DES aleatoria.   
 
     """
-
-    return True
-
+    if key_option == 1:
+        return secrets.token_bytes(24)  # 3 claves independientes (24 bytes)
+    elif key_option == 2:
+        return secrets.token_bytes(16)  # 2 claves independientes (16 bytes)
+    elif key_option == 3:
+        return secrets.token_bytes(8)   # 1 clave repetida 3 veces (8 bytes)
+    else:         raise ValueError("Opción de clave 3DES inválida. Use 1, 2 o 3.")
 
 def generate_aes_key(key_size: int = 256):
     """
@@ -45,6 +49,15 @@ def generate_iv(block_size: int = 8) -> bytes:
     pass
 
 if __name__ == "__main__":
-    
+
     des_key = generate_des_key()
     print(f"DES key (8 bytes):          {des_key.hex()}  [{len(des_key)} bytes]")
+
+    key3des_op1 = generate_3des_key(1)
+    print(f"3DES key opción 1 (24 b):   {key3des_op1.hex()}  [{len(key3des_op1)} bytes]")
+
+    key3des_op2 = generate_3des_key(2)
+    print(f"3DES key opción 2 (16 b):   {key3des_op2.hex()}  [{len(key3des_op2)} bytes]")
+
+    key3des_op3 = generate_3des_key(3)
+    print(f"3DES key opción 3 (8 b):    {key3des_op3.hex()}  [{len(key3des_op3)} bytes]")
