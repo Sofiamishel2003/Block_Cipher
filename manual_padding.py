@@ -36,12 +36,27 @@ def pkcs7_unpad(data: bytes) -> bytes:
         >>> pkcs7_unpad(padded)
         b'HOLA'
     """
-
-    return True
+    if not data:
+        raise ValueError("Data cannot be empty")
+    # Según investigué el último byte te inda cuanto hay de padding 
+    padding_length = data[-1]
+    if padding_length == 0 or padding_length > len(data):
+        raise ValueError("Invalid padding length")
+    # Verificar que los bytes de padding sean correctos
+    padding = data[-padding_length:]
+    if any(p != padding_length for p in padding):
+        raise ValueError("Invalid padding bytes")
+    return data[:-padding_length]
 
 if __name__ == "__main__":
-    test1 = pkcs7_pad(b"HOLA", 8)
-    print(f"pkcs7_pad(b'HOLA', 8):  {test1.hex()}")
+    ejemplo_1 = pkcs7_pad(b"HOLA", 8)
+    print(f"pkcs7_pad(b'HOLA', 8):  {ejemplo_1.hex()}")
 
-    test2 = pkcs7_pad(b"12345678", 8)
-    print(f"pkcs7_pad(b'12345678', 8): {test2.hex()}")
+    ejemplo_2 = pkcs7_pad(b"12345678", 8)
+    print(f"pkcs7_pad(b'12345678', 8): {ejemplo_2.hex()}")
+
+    unpadded = pkcs7_unpad(ejemplo_1)
+    print(f"pkcs7_unpad(ejemplo_1): {unpadded}")
+
+    unpadded2 = pkcs7_unpad(ejemplo_2)
+    print(f"pkcs7_unpad(ejemplo_2): {unpadded2}")
