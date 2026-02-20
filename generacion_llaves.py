@@ -46,8 +46,7 @@ def generate_iv(block_size: int = 8) -> bytes:
     Genera un vector de inicialización (IV) aleatorio.
 
     """
-    # TODO: Implementar
-    pass
+    return secrets.token_bytes(block_size)
 
 if __name__ == "__main__":
 
@@ -62,3 +61,19 @@ if __name__ == "__main__":
 
     key3des_op3 = generate_3des_key(3)
     print(f"3DES key opción 3 (8 b):    {key3des_op3.hex()}  [{len(key3des_op3)} bytes]")
+
+    aes128 = generate_aes_key(128)
+    print(f"AES-128 key (16 bytes):     {aes128.hex()}  [{len(aes128)} bytes]")
+
+    aes192 = generate_aes_key(192)
+    print(f"AES-192 key (24 bytes):     {aes192.hex()}  [{len(aes192)} bytes]")
+
+    aes256 = generate_aes_key(256)
+    print(f"AES-256 key (32 bytes):     {aes256.hex()}  [{len(aes256)} bytes]")
+
+    iv_des = generate_iv(8)
+    print(f"IV DES (8 bytes):           {iv_des.hex()}  [{len(iv_des)} bytes]")
+
+    iv_aes = generate_iv(16)
+    print(f"IV AES (16 bytes):          {iv_aes.hex()}  [{len(iv_aes)} bytes]")
+
