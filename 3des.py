@@ -1,6 +1,7 @@
 
 from Crypto.Cipher import DES3
 from Crypto.Util.Padding import pad, unpad
+from generacion_llaves import generate_3des_key, generate_iv
 
 
 def encrypt_3des_cbc(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
@@ -36,3 +37,16 @@ def decrypt_3des_cbc(ciphertext: bytes, key: bytes, iv: bytes) -> bytes:
     # 5. Retornar
     return True
 
+if __name__ == "__main__":
+    # con la función generamos la clave de 3DES
+    key_option = 2
+    key = generate_3des_key(key_option)
+
+    # Generar IV aleatorio con 8 bytes (tamaño de bloque de DES) usando la función generate_iv()
+    iv = generate_iv(8)
+
+    plaintext = b"Mensaje secreto para laboratorio de criptografia 3DES"
+
+    print(f"Key ({len(key)} bytes): {key.hex()}")
+    print(f"IV  ({len(iv)} bytes): {iv.hex()}")
+    print(f"Plaintext: {plaintext}")
