@@ -2,6 +2,7 @@
 from Crypto.Cipher import DES3
 from Crypto.Util.Padding import pad, unpad
 from generacion_llaves import generate_3des_key, generate_iv
+from manual_padding import pkcs7_pad
 
 
 def encrypt_3des_cbc(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
@@ -15,7 +16,21 @@ def encrypt_3des_cbc(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
         0  # Debe ser múltiplo de 8 (tamaño de bloque de DES)
     """
 
-    return True
+    # Validar que el IV tenga 8 bytes y la clave tenga 16 o 24 bytes
+    if len(iv) != 8:
+        raise ValueError("IV inválido: debe ser de 8 bytes para 3DES-CBC.")
+    if len(key) not in (16, 24):
+        raise ValueError("Clave inválida: 3DES requiere 16 o 24 bytes.")
+
+    # Crea el cipher con la libreria
+    cipher = DES3.new(key, DES3.MODE_CBC, iv=iv)
+
+    # Le aplicamos el padding PKCS#7 al tamaño de bloque (8)
+    padded = pkcs7_pad(plaintext, 8)
+
+    # De ahí ya solo lo desciframos
+    return cipher.encrypt(padded)
+
 
 
 def decrypt_3des_cbc(ciphertext: bytes, key: bytes, iv: bytes) -> bytes:
@@ -50,3 +65,6 @@ if __name__ == "__main__":
     print(f"Key ({len(key)} bytes): {key.hex()}")
     print(f"IV  ({len(iv)} bytes): {iv.hex()}")
     print(f"Plaintext: {plaintext}")
+    # Ciframos como buenas girly pops
+    ciphertext = encrypt_3des_cbc(plaintext, key, iv)
+    print(f"Ciphertext: {ciphertext.hex()}")
