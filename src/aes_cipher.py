@@ -81,20 +81,20 @@ def encrypt_image():
 
     # ECB
     ecb_body = encrypt_ecb(body, key)
-    save_ppm("images/aes_ecb.ppm", header, ecb_body)
+    save_ppm("images/aes/aes_ecb.ppm", header, ecb_body)
 
     # CBC
     cbc_body = encrypt_cbc(body, key)
-    save_ppm("images/aes_cbc.ppm", header, cbc_body)
+    save_ppm("images/aes/aes_cbc.ppm", header, cbc_body)
 
     # CTR
     ctr_body = encrypt_ctr(body, key)
-    save_ppm("images/aes_ctr.ppm", header, ctr_body)
+    save_ppm("images/aes/aes_ctr.ppm", header, ctr_body)
 
     print("Encrypted images generated:")
-    print(" - images/aes_ecb.ppm")
-    print(" - images/aes_cbc.ppm")
-    print(" - images/aes_ctr.ppm")
+    print(" - images/aes/aes_ecb.ppm")
+    print(" - images/aes/aes_cbc.ppm")
+    print(" - images/aes/aes_ctr.ppm")
 
 
 if __name__ == "__main__":
