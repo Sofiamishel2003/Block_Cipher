@@ -11,10 +11,10 @@ if __name__ == "__main__":
     images = os.path.join(project, "images")
 
     files = [
-        ("tux.ppm", "aes/tux.png"),
-        ("aes/aes_ecb.ppm", "aes/tux_ecb.png"),
-        ("aes/aes_cbc.ppm", "aes/tux_cbc.png"),
-        ("aes/aes_ctr.ppm", "aes/tux_ctr.png"),
+        ("tux.ppm", "tux.png"),
+        ("aes_ecb.ppm", "tux_ecb.png"),
+        ("aes_cbc.ppm", "tux_cbc.png"),
+        ("aes_ctr.ppm", "tux_ctr.png"),
     ]
 
     for ppm, png in files:
