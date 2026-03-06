@@ -169,7 +169,7 @@ Se solicitó a claude una batería de test que cubrieran:
 
 Archivo principal de tests:
 
-![test_ciphers](tests/test_ciphers.py)
+[test_ciphers](tests/test_ciphers.py)
 
 Los tests incluyen:
 
