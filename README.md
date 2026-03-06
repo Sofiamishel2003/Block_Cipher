@@ -74,7 +74,7 @@ Resultado esperado:
 
 Ejemplo de ejecución real:
 
-![Resultados tests](tests/Resultado.png)
+[Resultados tests](tests/Resultado.png)
 
 ---
 
@@ -86,7 +86,7 @@ Ejemplo de ejecución real:
 
 Implementado en:
 
-![des_cipher](src/des_cipher.py)
+[des_cipher](src/des_cipher.py)
 
 
 ### Ejemplo
@@ -112,7 +112,7 @@ print(decrypted)
 
 Implementado en:
 
-![tripledes_cipher](src/tripledes_cipher.py)
+[tripledes_cipher](src/tripledes_cipher.py)
 
 ### Ejemplo
 
@@ -136,7 +136,7 @@ decrypted = decrypt_3des_cbc(ciphertext, key, iv)
 
 Implementado en:
 
-![aes_cipher](src/aes_cipher.py)
+[aes_cipher](src/aes_cipher.py)
 
 Ejemplo:
 
